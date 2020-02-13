@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title> 
+</head>
+<body>          
+    <label>Clients</label>     <br> 
+    <input type="text" name="clientName" id="clientName" placeholder="name"></input>
+    <input type="text" name="clientLastName" id="clientLastName" placeholder="last name"></input>
+ <!--    <input type="text" name="idCard" id="idCard" placeholder="id Card"></input>
+    <input type="text" name="bankAccountNumber" id="bankAccountNumber" placeholder="bank account"></input> -->
+    <button onClick="clientCreate()">Create Client</button> <br>
+
+    <label>Bank accounts</label>      <br>
+    <input type="text" name="clientName2" id="clientName2" placeholder="name"></input>
+    <input type="text" name="bankAccountNumber2" id="bankAccountNumber2" placeholder="Account number"></input>
+    <button onClick="bankAccountCreate()">Create bank account</button> <br>
+
+    <label>Deposit or withdraw money</label> <br>     
+    <input type="text" name="clientName3" id="clientName3" placeholder="name"></input>
+    <input type="text" name="bankAccountNumber3" id="bankAccountNumber3" placeholder="Account number"></input>
+    <input type="text" name="amount" id="amount" placeholder="amount"></input>
+    <br>
+    <button onClick="deposit()">Deposit</button>
+    <button onClick="withdraw()">Withdraw</button> <br>
+
+    <br>
+    <button onClick="balance()">Check balance and number of bank transaccions done</button>
+    <button onClick="transactionNumber()">Transaction number</button>
+    <button onClick="logOut()">Log out</button>
+    
+
+    <br>
+    <br>
+    
+
+
+<p id="demo"></p>
+
+
+    <script src='banco_POO.js' type='text/javascript'></script>
+</body>
+</html>
