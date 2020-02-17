@@ -1,11 +1,11 @@
 "use strict";
 var arrayClients=[];
 var arrayBankAccount=[];
-var balance = 0; //Mirar
-/*Disenyar un programa per un banc que permeti fer el control d'un compte corrent. El programa ha de tenir la classe Compte que té les següents dades:
--	Titular
--	Saldo
--	Número de moviments realitzats sobre el compte bancari
+var balance = 0; 
+/*Diseñar un programa para un banco que permita hacer el control de una cuenta corriente. El programa debe tener la clase Cuenta que tiene los siguientes datos:
+- Titular
+- Saldo
+- Número de movimientos realizados sobre la cuenta bancaria
 */
 
 class Client{
@@ -73,6 +73,18 @@ class BankAccount {
             this._balance = this._balance - amount;
             this._numMoviments = this._numMoviments +1;
         }
+
+        //retorna quants diners hi ha en el compte.
+        balanceAc(){
+            document.getElementById("demo").innerHTML= `Your balance is ${this._balance} €`
+            console.log(this._balance)
+        } 
+        
+        //retorna el número de transaccions que s'han realitzat
+       transactionNumberAc(){
+           document.getElementById("demo").innerHTML=`the number of transactions done in your bank account number ${this._accountNumber} is ${this._numMoviments}`
+       }
+
 }
 
 //CREO USUARIOS y CUENTAS PARA HACER ITERACIONES
@@ -86,7 +98,7 @@ console.log("********");
 console.log(alex.arrayBankAccount[0].accountNumber);
 console.log(alex.arrayBankAccount[0].accountNumber);
 console.log(alex);
-
+///////////
 
 function clientCreate(){
     let name = (document.getElementById("clientName")).value; 
@@ -118,8 +130,6 @@ function clientMatchAccount(owner, bankAccount){
  
         //fico el compte a l'array de bancs accounts de l'array del client
         arrayClients[i].arrayBankAccount.push(bankAccount)
-        
-        console.log("lo que estoy vigilando")
         console.log(arrayClients[i])
         } 
        
@@ -154,9 +164,6 @@ function deposit(){
     }
 }
 
-
-
-
     //permet treure diners del compte sempre que hi hagi prou saldo, 
         //també incrementarà el número de moviments.
 
@@ -164,72 +171,61 @@ function withdraw(){
     let owner = (document.getElementById("clientName3")).value; 
     let accountNumberClient = parseInt((document.getElementById("bankAccountNumber3")).value);
     let amount = parseInt((document.getElementById("amount")).value);
-    console.log(accountbankAccount);
+    console.log(accountNumberClient);
     console.log(amount);
-
 
     for (let i=0; i<arrayClients.length; i++){
         if (owner == arrayClients[i].name){
-            for (let j=0; j<arrayBankAccount.length; j++){
-                if (accountNumberClient == arrayClients[i].arrayBankAccount[j].accountNumber){
-                    arrayClients[i].arrayBankAccount[j].accountNumber.withdrawAc(amount);
 
+            for (let j=0; j<arrayClients[i].arrayBankAccount.length; j++){
+                if (accountNumberClient == arrayClients[i].arrayBankAccount[j].accountNumber){
+                    if (arrayClients[i].arrayBankAccount[j].balance > amount){
+                    arrayClients[i].arrayBankAccount[j].withdrawAc(amount);
+                    document.getElementById("demo").innerHTML = `You have withdraw ${amount}in your ${accountNumberClient}. Your balance is ${arrayClients[i].arrayBankAccount[j].balance}`
+                } else {
+                    document.getElementById("demo").innerHTML = `There is not enought money in your bank account nº ${accountNumberClient}`
                 }
 
+                }
             }
-
-
         }
-
-
-
-
     }
+}
 
+//retorna quants diners hi ha en el compte.
+
+function balance2(){
+    let owner = (document.getElementById("clientName4")).value; 
+    let accountNumberClient = parseInt((document.getElementById("bankAccountNumber4")).value);
+
+    for(let i=0; i<arrayClients.length;i++){
+        if (owner == arrayClients[i].name){
+        for (let j=0; j<arrayBankAccount.length; j++){
+            if (accountNumberClient == arrayClients[i].arrayBankAccount[j].accountNumber){
+                arrayClients[i].arrayBankAccount[j].balanceAc();
+            } else {    
+                document.getElementById("demo").innerHTML = `Account nº ${accountNumberClient} not found`
+            }
+        }
+        }
+    }
+}
+//retorna el número de transaccions que s'han realitzat
+function transactionNumber(){
+    let owner = (document.getElementById("clientName4")).value; 
+    let accountNumberClient = parseInt((document.getElementById("bankAccountNumber4")).value);
+
+    for(let i=0; i<arrayClients.length;i++){
+        if (owner == arrayClients[i].name){
+        for (let j=0; j<arrayBankAccount.length; j++){
+            if (accountNumberClient == arrayClients[i].arrayBankAccount[j].accountNumber){
+                arrayClients[i].arrayBankAccount[j].transactionNumberAc();
+            } else {    
+                document.getElementById("demo").innerHTML = `Account nº ${accountNumberClient} not found`
+            }
+        }
+        }
+    }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* function deposit(){
-    let owner = (document.getElementById("clientName3")).value; 
-    let accountNumberClient = parseInt((document.getElementById("bankAccountNumber3")).value);
-    let amount = parseInt((document.getElementById("amount")).value);
-    
-    console.log(arrayClients);
-    for (let i=0;i<arrayClients.length;i++){
-        if (owner == arrayClients[i].name) {
-            console.log(arrayClients[i].name)
-            
-            for (let j=0; j<arrayClients[i].arrayBankAccount.length;j++){
-                console.log()
-                //itero l'array dels banks accounts dintre de l'array dels clients.
-                if (accountNumberClient == arrayClients[i].arrayBankAccount[j].accountNumber){
-                arrayClients[i].arrayBankAccount[j].depositAc(amount);
-                    console.log("*****");
-                console.log(arrayClients[i].balance);
-                console.log(arrayClients);
-                }
-            }
-        }
-    }
-} */
